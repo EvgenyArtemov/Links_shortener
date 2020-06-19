@@ -1,0 +1,26 @@
+{
+  "name": "link_shortener_mern",
+  "version": "1.0.0",
+  "description": "MERN Stack Links Shortener App",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "server": "nodemon app.js"
+  },
+  "keywords": [
+    "MERN",
+    "NODE"
+  ],
+  "author": "Evgeny Artemov <4rtem0v@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "config": "^3.3.1",
+    "express": "^4.17.1",
+    "express-validator": "^6.5.0",
+    "mongoose": "^5.9.18"
+  },
+  "devDependencies": {
+    "concurrently": "^5.2.0",
+    "nodemon": "^2.0.4"
+  }
+}
