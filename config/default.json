@@ -1,4 +1,5 @@
 {
     "port": 5000,
+    "jwtSecret": "strong password",
     "mongoUri": "mongodb+srv://diez:010191diez@cluster0-ngvnb.azure.mongodb.net/Links_shortener?retryWrites=true&w=majority"
 }
