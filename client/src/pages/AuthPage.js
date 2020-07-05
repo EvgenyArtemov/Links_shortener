@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { useHttp } from '../hooks/http.hook'
 import { useMessage } from '../hooks/message.hook'
-
+import { AuthContext } from '../context/AuthContext'
 import './authPage.css'
 
 export const AuthPage = () => {
     const message = useMessage()
     const {loading, error, request, clearError} = useHttp()
     const [form, setForm] = useState({email: '', password: ''})
+
+    const auth = useContext(AuthContext)
 
     useEffect(() => {
         message(error)
@@ -21,10 +23,15 @@ export const AuthPage = () => {
     const registerHandler = async () => {
         try {
             const data = await request('/api/auth/register', 'POST', {...form})
-            console.log('Data', data)
-        } catch (e) {
-            
-        }
+            message(data.message)
+        } catch (e) {}
+    }
+
+    const loginHandler = async () => {
+        try {
+            const data = await request('/api/auth/login', 'POST', {...form})
+            auth.login(data.token, data.userId)
+        } catch (e) {}
     }
     
     return (
@@ -63,7 +70,12 @@ export const AuthPage = () => {
                         disabled={loading}
                         >
                             Sign up</button>
-                        <button className="btn green darken-3">Log in</button>
+                        <button 
+                        className="btn green darken-3"
+                        onClick={loginHandler}
+                        disabled={loading}
+                        >
+                            Log in</button>
                     </div>
                 </div>
             </div>
